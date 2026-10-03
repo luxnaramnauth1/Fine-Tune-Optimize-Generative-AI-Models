@@ -1,0 +1,19 @@
+{
+  "_instructions": "Copy to my_results.json and replace every null/FILL with values MEASURED in your own run. Then run: python build_reports.py",
+  "loss_start": null,
+  "loss_final": null,
+  "training_time_hours": null,
+  "gpu_memory_gb": null,
+  "gpu_utilization_pct": null,
+  "adapter_size_mb": null,
+  "cost_usd": null,
+  "perplexity": null,
+  "rouge_l": null,
+  "challenges": "FILL: problems you hit (e.g. out-of-memory, loss spike) and how you fixed them, or 'None encountered'",
+  "log_evidence": "FILL: names of screenshot/log files you are submitting, e.g. training.log, nvidia_smi.png",
+  "qualitative": [
+    {"scenario": "Chest pain and shortness of breath", "response": "FILL: model output", "assessment": "FILL: terminology, urgency, differential, next steps, safety"},
+    {"scenario": "Child with fever and sore throat", "response": "FILL: model output", "assessment": "FILL"},
+    {"scenario": "Diabetic with high blood sugar", "response": "FILL: model output", "assessment": "FILL"}
+  ]
+}
