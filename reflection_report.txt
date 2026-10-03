@@ -1,0 +1,11 @@
+Reflection on Parameter Tuning
+
+My methodology was to isolate one variable at a time. I first swept temperature (0.2, 0.5, 0.7, 1.0, 1.5) across all three use cases, then held temperature at 0.7 to compare top-k (10, 50, 100) with top-p (0.5, 0.9, 0.95), and finally compared beam search (3 and 5 beams) against sampling. From this I chose creative blog: temperature 0.9, top-p 0.95; technical summary: 0.3, top-p 0.9; customer support: 0.6, top-p 0.85, with top-k disabled everywhere.
+
+The creativity-consistency trade-off drove each choice. Marketing intros need personality, so I accepted more randomness and the risk of drift. Technical content needs precision, so I accepted blander, more repetitive wording to reduce invented specifications. Support replies sit in between: warm enough to avoid sounding cold, controlled enough to stay on topic.
+
+Temperature had the biggest effect on quality. Below roughly 0.2 text turns rigid and repetitive; above about 1.2 coherence breaks down. Top-k and top-p controlled which words were available: top-k uses a fixed cut-off that can feel too narrow at 10 or loose at 100, while top-p adapts to the model's confidence and sounded more natural. The two interact, so a high temperature paired with a moderate top-p (around 0.85) stays creative but focused.
+
+The most surprising lesson was that beam search is deterministic and fluent but can be generic, while sampling changes on every run, so reproducibility has to be set deliberately with a seed.
+
+In production I would not rely on one configuration. I would keep per-use-case presets, run A/B tests on many prompts rather than one, add human review or automated fact checks for technical content, log parameters with outputs, and revalidate whenever the model changes.
